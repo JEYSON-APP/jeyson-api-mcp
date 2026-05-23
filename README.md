@@ -30,7 +30,7 @@ Create `.vscode/mcp.json` in your project root:
     "jeyson": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
+      "args": ["--yes", "--package", "@jeyson-app/jeyson-api-mcp", "jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
@@ -50,7 +50,7 @@ Create or edit `~/.cursor/mcp.json`:
   "mcpServers": {
     "jeyson": {
       "command": "npx",
-      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
+      "args": ["--yes", "--package", "@jeyson-app/jeyson-api-mcp", "jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
@@ -70,7 +70,7 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "jeyson": {
       "command": "npx",
-      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
+      "args": ["--yes", "--package", "@jeyson-app/jeyson-api-mcp", "jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
