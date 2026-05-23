@@ -1,4 +1,4 @@
-# Jeyson MCP Server
+# @jeyson-app/jeyson-api-mcp
 
 An MCP (Model Context Protocol) server that connects AI coding assistants — Cursor, Claude Desktop, VS Code Copilot, Windsurf — directly to your Jeyson API workspace. Your AI assistant can list your schemas, call them live, and generate ready-to-paste integration code for any mobile or web platform.
 
@@ -14,31 +14,23 @@ Supported platforms for `jeyson_get_integration_snippet`: `swift` · `kotlin` ·
 
 ## Setup
 
-### 1. Build
-
-```bash
-cd jeyson-mcp
-npm install
-npm run build
-```
-
-### 2. Find your credentials
+### 1. Find your credentials
 
 Go to your [Jeyson Dashboard](https://your-jeyson-domain.com/dashboard) → **Settings** → copy your **App ID** and **API Key**.
 
-### 3. Configure your AI tool
+### 2. Configure your AI tool
 
 #### VS Code (GitHub Copilot)
 
-Edit `.vscode/mcp.json` in the repo root and fill in your credentials:
+Create `.vscode/mcp.json` in your project root:
 
 ```json
 {
   "servers": {
     "jeyson": {
       "type": "stdio",
-      "command": "node",
-      "args": ["${workspaceFolder}/jeyson-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
@@ -57,8 +49,8 @@ Create or edit `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "jeyson": {
-      "command": "node",
-      "args": ["/absolute/path/to/jeyson-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
@@ -77,8 +69,8 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "jeyson": {
-      "command": "node",
-      "args": ["/absolute/path/to/jeyson-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@jeyson-app/jeyson-api-mcp"],
       "env": {
         "JEYSON_APP_ID": "YOUR_APP_ID",
         "JEYSON_API_KEY": "YOUR_API_KEY",
@@ -109,6 +101,9 @@ Add the sentiment_analysis schema to my Swift ViewController
 ## Development
 
 ```bash
+git clone https://github.com/JEYSON-APP/jeyson-api-mcp.git
+cd jeyson-api-mcp
+npm install
 npm run dev   # run with tsx (no build needed)
 npm run build # compile to dist/
 ```
