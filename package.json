@@ -2,13 +2,17 @@
   "name": "jeyson-mcp",
   "version": "1.0.0",
   "description": "MCP server for Jeyson API — lets AI coding assistants list schemas, call endpoints, and generate mobile/web integration code.",
-  "private": true,
   "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "bin": {
     "jeyson-mcp": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "start": "node dist/index.js",
     "dev": "npx tsx src/index.ts"
   },
