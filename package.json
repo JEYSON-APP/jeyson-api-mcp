@@ -1,5 +1,5 @@
 {
-  "name": "jeyson-mcp",
+  "name": "@jeyson-app/jeyson-api-mcp",
   "version": "1.0.0",
   "description": "MCP server for Jeyson API — lets AI coding assistants list schemas, call endpoints, and generate mobile/web integration code.",
   "type": "module",
@@ -8,7 +8,7 @@
     "README.md"
   ],
   "bin": {
-    "jeyson-mcp": "dist/index.js"
+    "jeyson-api-mcp": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
