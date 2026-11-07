@@ -10,7 +10,9 @@ An MCP (Model Context Protocol) server that connects AI coding assistants — Cu
 | `jeyson_call_schema` | Calls a schema endpoint live and returns the structured JSON response |
 | `jeyson_get_integration_snippet` | Generates platform-specific integration code for a schema |
 
-Supported platforms for `jeyson_get_integration_snippet`: `swift` · `kotlin` · `flutter` · `react_native` · `javascript`
+Supported platforms for `jeyson_get_integration_snippet`:
+- Client (browser/mobile): `swift` · `kotlin` · `flutter` · `react_native` · `javascript`. Snippets log in with the publishable key (`x-publishable-key`), then call schemas with the end-user Bearer JWT. They never contain the secret key.
+- Server-side: `node` · `python` · `curl`. Snippets read the secret `X-API-KEY` from the `JEYSON_API_KEY` env var.
 
 ## Setup
 
@@ -107,3 +109,12 @@ npm install
 npm run dev   # run with tsx (no build needed)
 npm run build # compile to dist/
 ```
+
+## Notes on security and limits
+
+- `jeyson_call_schema` accepts `target_language` (ISO-like code such as `en`, `pt-BR`, or a language name up to 32 letters).
+- Schemas default to `auth_required: true` unless explicitly set to `false`. Pass `user_token` for those.
+- Vision schemas are called with `multipart/form-data`: pass `image_path` (local jpeg/png/webp/gif, max 5MB) to `jeyson_call_schema`. Vision snippets send an `image` file plus `prompt`.
+- The `JEYSON_API_KEY` is your **secret** key (`sk_live_`). Keep it server-side; never embed it in browser or mobile apps. Client apps use the publishable key (`x-publishable-key`, `pk_live_`) on `auth/{login,register,oauth}` only; it is rejected (403) unless the app has at least one allowed origin configured (full origin `https://app.com` or host `app.com`, exact match). All other client calls use the end-user Bearer JWT from login.
+- The chat `model` parameter is honored only with the secret key; end-user Bearer calls use the app's configured model.
+- Errors are surfaced with context: 402 `QUOTA_EXCEEDED`, 413 `PAYLOAD_TOO_LARGE` (prompt 8000 chars, image 5MB, body 64KB), 429 `RATE_LIMIT_EXCEEDED` (100 req/min per IP per app, 600/min per app).

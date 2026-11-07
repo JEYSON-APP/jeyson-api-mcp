@@ -1,6 +1,6 @@
 {
   "name": "@jeyson-app/jeyson-api-mcp",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "MCP server for Jeyson API — lets AI coding assistants list schemas, call endpoints, and generate mobile/web integration code.",
   "type": "module",
   "files": [
